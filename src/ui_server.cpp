@@ -1,6 +1,7 @@
 #include "ui_server.h"
 #include "config.h"
 #include "wifi_manager.h"
+#include "sensors.h"
 
 #include <WebServer.h>
 #if USE_SPIFFS
@@ -39,4 +40,6 @@ void ui_init() {
     delay(300);
     ESP.restart();
   });
+
+
 }

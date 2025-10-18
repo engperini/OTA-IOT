@@ -5,6 +5,7 @@
 #define LED_BUILTIN 21   // XIAO ESP32S3: GPIO21 (LED onboard) - ajuste se precisar
 #endif
 #define LED_ACTIVE_LOW 1 // 1 = LED acende em LOW
+#define USE_BMP280 1      // 1 = usar sensor BMP280 via I2C
 
 // ---------- Rede ----------
 #define MDNS_HOST               "esp32"
