@@ -25,16 +25,36 @@ This project serves as a base for IoT applications that require remote control, 
 ## 📂 Project Structure
 
 ```
-OTA-IOT/
- ┣ 📂 data/                → Files stored in the SPIFFS filesystem
- ┃ ┣ index.html            → Main dashboard: controls LED, displays logs, and system info.
- ┃ ┗ wifi.html             → Wi-Fi setup page: allows users to enter SSID and password manually.
- ┣ 📂 src/
- ┃ ┗ main.cpp              → Main firmware source code
- ┣ 📄 extra_script.py       → Script to automatically upload SPIFFS before firmware
- ┣ 📄 platformio.ini        → PlatformIO configuration file
- ┗ 📄 .gitignore
+/src
+  main.cpp
+  config.h
+  iot_core.h
+  iot_core.cpp
+  wifi_manager.h
+  wifi_manager.cpp
+  ui_server.h
+  ui_server.cpp
+  sensors.h
+  sensors.cpp
+  utils.h
+  utils.cpp
+/data
+  index.html
+  ota.html
+  wifi.html
+
 ```
+
+> 🧩 **Version 1.0.0 – Modular Architecture**
+>
+> This release separates the project into independent modules:
+> - `iot_core` → WebSocket + OTA + Server
+> - `wifi_manager` → STA + AP + credential storage
+> - `sensors` → Hardware and telemetry
+> - `ui_server` → Web routes and HTML interface
+>
+> Designed for scalability — ready for new sensors and power modes.
+
 
 ---
 

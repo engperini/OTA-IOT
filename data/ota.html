@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ESP32 OTA Service</title>
+<style>
+ body{ background:#111; color:#eee; font-family:Arial; text-align:center; margin:30px; }
+ input[type=file], input[type=submit]{ background:#333; color:#fff; border:none; border-radius:6px; padding:10px 16px; margin:10px; cursor:pointer; }
+ #prg{ margin-top:8px; }
+ a{ color:#6cf; }
+</style>
+</head>
+<body>
+<h2>OTA Update</h2>
+<form method="POST" enctype="multipart/form-data" id="f">
+  <input type="file" name="update" required>
+  <input type="submit" value="Upload">
+</form>
+<div id="prg">Progress: 0%</div>
+<p><a href="/">← Back to Dashboard</a></p>
+
+<script>
+const form = document.getElementById('f');
+form.addEventListener('submit', e=>{
+  e.preventDefault();
+  const data = new FormData(form);
+  const xhr = new XMLHttpRequest();
+  xhr.upload.addEventListener('progress', evt=>{
+    if (evt.lengthComputable){
+      const per = Math.round((evt.loaded/evt.total)*100);
+      document.getElementById('prg').innerText = 'Progress: ' + per + '%';
+    }
+  });
+  xhr.onreadystatechange = ()=>{ if (xhr.readyState===4) document.getElementById('prg').innerText='Done. Rebooting...'; };
+  xhr.open('POST','/update',true);
+  xhr.send(data);
+});
+</script>
+</body>
+</html>
